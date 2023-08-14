@@ -1,16 +1,17 @@
 import React from "react";
-import { ThemeContextProvider } from "./contexts/ThemeContext";
-import { LangContextProvider } from "./contexts/LangContext";
-import Container from "./Container";
 import "./Main.css";
+import TodoForm from "./components/todo/Header/NewTodoForm/TodoForm";
+import { TodoProvider } from "./contexts/TodoContext";
+import Content from "./components/todo/content/Content";
 
 const App = () => {
   return (
-    <LangContextProvider>
-      <ThemeContextProvider>
-        <Container />
-      </ThemeContextProvider>
-    </LangContextProvider>
+    <TodoProvider>
+      <section className="todo-container">
+        <TodoForm />
+        <Content />
+      </section>
+    </TodoProvider>
   );
 };
 
