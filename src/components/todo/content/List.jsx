@@ -1,7 +1,7 @@
 import React from "react";
 import Item from "./Item";
 
-const List = () => {
+function List() {
   return (
     <>
       <ul class="todo-list">
@@ -9,6 +9,6 @@ const List = () => {
       </ul>
     </>
   );
-};
+}
 
 export default List;

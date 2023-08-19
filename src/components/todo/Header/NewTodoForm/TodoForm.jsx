@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 import validationScheme from "./validation";
-import { useTodo } from "../../../../contexts/TodoContext";
+import { useTodo } from "../../context/TodoContext";
 
 const Header = () => {
   const { addTodo } = useTodo();

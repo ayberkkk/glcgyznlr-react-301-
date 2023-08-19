@@ -1,22 +1,30 @@
 import React from "react";
-import { useTodo } from "../../../contexts/TodoContext";
+import { useTodo } from "../context/TodoContext";
 
-const Item = () => {
-  const { todos, setTodos } = useTodo();
+let filtered = null;
 
-  const onChange = () => {
-    const cloned_todos = [...todos];
+const Item = ({ todo }) => {
+  const { todos, toggleTodo, toggleDestroy, filter } = useTodo();
 
-    const itemIndex = cloned_todos.findIndex((todo) => todo.id);
-    const item = todos[itemIndex];
-    item.completed = false;
-
-    console.log("cloned", cloned_todos);
+  const onChange = (id) => {
+    toggleTodo(id);
   };
+
+  const onDestroy = (id) => {
+    toggleDestroy(id);
+  };
+
+  filtered = todos;
+
+  if (filter !== "all") {
+    filtered = todos.filter((todo) =>
+      filter === "active" ? todo.completed === false : todo.completed === true
+    );
+  }
 
   return (
     <>
-      {todos.map((todo) => (
+      {filtered.map((todo) => (
         <li key={todo.id} className={todo.completed ? "completed" : ""}>
           <div class="view">
             <input
@@ -26,11 +34,10 @@ const Item = () => {
               onChange={() => onChange(todo.id)}
             />
             <label>{todo.text}</label>
-            <button class="destroy"></button>
+            <button class="destroy" onClick={() => onDestroy(todo.id)}></button>
           </div>
         </li>
       ))}
-      ;
     </>
   );
 };

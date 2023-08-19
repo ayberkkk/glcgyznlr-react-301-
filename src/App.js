@@ -1,18 +1,20 @@
 import React from "react";
 import "./Main.css";
-import TodoForm from "./components/todo/Header/NewTodoForm/TodoForm";
-import { TodoProvider } from "./contexts/TodoContext";
-import Content from "./components/todo/content/Content";
+import Header from "./components/Header";
+import ChangerMenu from "./ChangerMenu";
+import TodoMenu from "./TodoMenu";
+import { Route, Routes } from "react-router-dom";
 
-const App = () => {
+function App() {
   return (
-    <TodoProvider>
-      <section className="todo-container">
-        <TodoForm />
-        <Content />
-      </section>
-    </TodoProvider>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/lang-theme-menu" element={<ChangerMenu />} />
+        <Route path="/todo-menu" element={<TodoMenu />} />
+      </Routes>
+    </>
   );
-};
+}
 
 export default App;
